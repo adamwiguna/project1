@@ -126,7 +126,7 @@
                                 } ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePesanan" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-shopping-cart"></i>
-                    <span>Pesanan</span>
+                    <span>Transaksi</span>
                 </a>
 
                 <div id="collapsePesanan" class="collapse <?php if ($judul == "Buat Transaksi" || $judul == "List Pesanan" || $judul == "Pilih Produk") {
