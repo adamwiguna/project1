@@ -13,6 +13,12 @@ class Produk_model extends CI_Model
         return $this->db->get_where('tbproduk', ['KodeProduk' => $kode])->row_array();
     }
 
+    public function getFotoByKode($kode)
+    {
+        $this->db->select('Foto');
+        return $this->db->get_where('tbproduk', ['KodeProduk' => $kode])->row()->Foto;
+    }
+
     public function tambah()
     {
         $data = [
@@ -22,8 +28,10 @@ class Produk_model extends CI_Model
             "Harga" => $this->input->post('harga', true),
             "Stok" => $this->input->post('stok', true),
             "Keterangan" => $this->input->post('keterangan', true),
-            "Foto" => $this->input->post('foto', true)
         ];
+        if (@$_FILES['foto']['name'] != null) {
+            $data['Foto'] = $this->upload->data('file_name');
+        }
         $this->db->insert('tbproduk', $data);
     }
 
@@ -42,8 +50,10 @@ class Produk_model extends CI_Model
             "Harga" => $this->input->post('harga', true),
             "Stok" => $this->input->post('stok', true),
             "Keterangan" => $this->input->post('keterangan', true),
-            "Foto" => $this->input->post('foto', true)
         ];
+        if (@$_FILES['foto']['name'] != null) {
+            $data['Foto'] = $this->upload->data('file_name');
+        }
 
         $this->db->where('KodeProduk', $this->input->post('kode'));
         $this->db->update('tbproduk', $data);

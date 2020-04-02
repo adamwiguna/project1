@@ -16,46 +16,47 @@
                 </div>
                 <div class="card-body">
                     <!-- Nested Row within Card Body -->
-
-                    <form class="user" method="post" action="<?= base_url('produk/tambahproduk'); ?>">
-                        <div class="form-group">
-                            <label for="nama" class="font-weight-bold">Nama Produk</label>
-                            <input type="text" class="form-control" id="namaproduk" name="nama">
-                        </div>
-                        <div class="form-group">
-                            <label for="kategori" class="font-weight-bold">Kategori</label>
-                            <select class="form-control" id="kategori" name="kategori">
-                                <?php foreach ($kategori as $k) : ?>
-                                    <option value="<?= $k; ?>"><?= $k; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="satuan" class="font-weight-bold">Satuan</label>
-                            <input type="text" class="form-control r" id="satuan" name="satuan">
-                        </div>
-                        <div class="form-group">
-                            <label for="harga" class="font-weight-bold">Harga</label>
-                            <input type="number" class="form-control " id="harga" name="harga">
-                        </div>
-                        <div class="form-group">
-                            <label for="stok" class="font-weight-bold">Stok Produk</label>
-                            <input type="number" class="form-control r" id="stok" name="stok">
-                        </div>
-                        <div class="form-group">
-                            <label for="keterangan" class="font-weight-bold">Keterangan</label>
-                            <textarea class="form-control" name="keterangan" rows="3"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="foto" class="font-weight-bold">Foto</label>
-                            <input type="text" class="form-control " id="foto" name="foto">
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-user btn-block">
-                            Simpan
-                        </button>
-                        <button type="reset" class="btn btn-primary btn-user btn-block">
-                            Ulang
-                        </button>
+                    <?php echo form_open_multipart('produk/tambahproduk'); ?>
+                    <div class="form-group">
+                        <label for="nama" class="font-weight-bold">Nama Produk</label>
+                        <input type="text" class="form-control" id="namaproduk" name="nama">
+                        <small class="form-text text-danger ml-1"> <?= form_error('nama'); ?> </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="kategori" class="font-weight-bold">Kategori</label>
+                        <select class="form-control" id="kategori" name="kategori">
+                            <?php foreach ($kategori as $k) : ?>
+                                <option value="<?= $k; ?>"><?= $k; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="satuan" class="font-weight-bold">Satuan</label>
+                        <input type="text" class="form-control " id="satuan" name="satuan">
+                    </div>
+                    <div class="form-group">
+                        <label for="harga" class="font-weight-bold">Harga</label>
+                        <input type="number" class="form-control " id="harga" name="harga">
+                    </div>
+                    <div class="form-group">
+                        <label for="stok" class="font-weight-bold">Stok Produk</label>
+                        <input type="number" class="form-control r" id="stok" name="stok">
+                    </div>
+                    <div class="form-group">
+                        <label for="keterangan" class="font-weight-bold">Keterangan</label>
+                        <textarea class="form-control" name="keterangan" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="foto" class="font-weight-bold">Foto</label>
+                        <input type="file" class="form-control-file" id="foto" name="foto">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                        Simpan
+                    </button>
+                    <button type="reset" class="btn btn-primary btn-user btn-block">
+                        Ulang
+                    </button>
+                    <?php echo form_close(); ?>
                     </form>
 
                 </div>

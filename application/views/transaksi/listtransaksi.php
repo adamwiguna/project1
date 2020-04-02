@@ -45,7 +45,7 @@
                                         echo $pelanggan['NamaLengkap'];
                                         ?></td>
                                    <td><?= $t['TglOrder']; ?></td>
-                                   <td><?= $t['TotalBayar']; ?></td>
+                                   <td><?= number_format($t['TotalBayar']); ?></td>
                                    <td>
                                        <a href="<?= base_url(); ?>/produk/ubahproduk/<?= $t['NoTransaksi']; ?>" class="btn btn-success ">
                                            <span class="icon text-white">

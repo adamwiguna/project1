@@ -21,37 +21,33 @@
                    <a href="<?= base_url('Produk/tambahProduk') ?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus-square fa-sm text-white-50"></i> Tambah Produk</a>
                </div>
            </div>
+
            <div class="card-body">
                <div class="table-responsive">
-                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                   <table class="table table-bordered" id="dataTableProduk" width="100%" cellspacing="0">
                        <thead>
                            <tr>
+                               <th hidden>Kode</th>
                                <th>Nama </th>
                                <th>Katgori</th>
-                               <th>Stok</th>
-                               <th>Harga</th>
+                               <th>Satuan</th>
+                               <th>Harga(Rp)</th>
                                <th>Foto</th>
                                <th>Aksi</th>
                            </tr>
                        </thead>
-                       <tfoot>
-                           <tr>
-                               <th>Nama </th>
-                               <th>Katgori</th>
-                               <th>Stok</th>
-                               <th>Harga</th>
-                               <th>Foto</th>
-                               <th>Aksi</th>
-                           </tr>
-                       </tfoot>
                        <tbody>
                            <?php foreach ($produk as $p) : ?>
                                <tr>
+                                   <td hidden><?= $p['KodeProduk']; ?></td>
                                    <td><?= $p['NamaProduk']; ?></td>
                                    <td><?= $p['KategoriProduk']; ?></td>
-                                   <td><?= $p['Stok'] . ' ' . $p['Satuan']; ?></td>
-                                   <td><?= 'Rp ' . $p['Harga']; ?></td>
-                                   <td><?= $p['Foto']; ?></td>
+                                   <td><?= $p['Satuan']; ?></td>
+                                   <td><?= number_format($p['Harga']); ?></td>
+                                   <td>
+                                       <img src="<?= base_url(); ?>uploads/produk/<?= $p['Foto'] ?>" width="120px" alt="">
+
+                                   </td>
                                    <td>
                                        <a href="<?= base_url(); ?>/produk/ubahproduk/<?= $p['KodeProduk']; ?>" class="btn btn-success ">
                                            <span class="icon text-white">
@@ -72,6 +68,7 @@
 
                        </tbody>
                    </table>
+
                </div>
            </div>
        </div>

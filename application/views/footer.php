@@ -63,6 +63,15 @@
         });
     });
 </script>
+<script>
+    $(document).ready(function() {
+        $('#dataTableProduk').DataTable({
+            "order": [
+                [0, "desc"]
+            ]
+        });
+    });
+</script>
 
 
 <!-- Page level custom scripts -->

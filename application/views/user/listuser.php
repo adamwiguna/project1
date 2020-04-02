@@ -58,11 +58,17 @@
 
                                        <!-- Button -->
 
-                                       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
+                                       <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
                                            <span class="icon text-white">
                                                <i class="fas fa-search"></i>
                                            </span>
-                                       </button>
+                                       </button> -->
+                                       <a href="<?= base_url(); ?>/user/detailuser/<?= $p['KodeUser']; ?>" class="btn btn-primary ">
+                                           <span class="icon text-white">
+                                               <i class="fas fa-search"></i>
+                                           </span>
+                                           <span class="text"></span>
+                                       </a>
                                        <!-- Aksi edit -->
 
 

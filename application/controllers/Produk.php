@@ -21,15 +21,30 @@ class Produk extends CI_Controller
     {
         $data['judul'] = 'Tambah Produk';
         $data['kategori'] = ['Kitchen', 'Laundry', 'Housekeeping', 'Pool Chemical'];
-        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('nama', 'Nama Produk', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('header', $data);
             $this->load->view('produk/tambahproduk', $data);
             $this->load->view('footer');
         } else {
-            $this->session->set_flashdata('flash', 'Ditambah');
-            $this->Produk_model->tambah();
-            redirect('produk/listproduk');
+            $config['upload_path']          = './uploads/produk/';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            $config['max_size']             = 2048;
+            $config['file_name']             = 'produk-' . date('ymd') . '-' . date('(his)') . '-' . substr(md5(rand()), 0, 10);
+            $this->load->library('upload', $config);
+            if (@$_FILES['foto']['name'] != null) {
+                if (!$this->upload->do_upload('foto')) {
+                    echo "Gagal";
+                } else {
+                    $this->Produk_model->tambah();
+                    $this->session->set_flashdata('flash', 'Ditambah');
+                    redirect('produk/listproduk');
+                }
+            } else {
+                $this->Produk_model->tambah();
+                $this->session->set_flashdata('flash', 'Ditambah');
+                redirect('produk/listproduk');
+            }
         }
     }
 
@@ -44,6 +59,11 @@ class Produk extends CI_Controller
 
     public function hapus($kode)
     {
+
+        $data['produk'] = $this->Produk_model->getDataByKode($kode);
+        if ($data['produk']['Foto'] != null) {
+            unlink('./uploads/produk/' . $data['produk']['Foto']);
+        }
         $this->Produk_model->hapus($kode);
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('produk/listproduk');
@@ -72,9 +92,27 @@ class Produk extends CI_Controller
             $this->load->view('produk/ubahproduk', $data);
             $this->load->view('footer');
         } else {
-            $this->session->set_flashdata('flash', 'Diubah');
-            $this->Produk_model->ubah();
-            redirect('produk/listproduk');
+            $config['upload_path']          = './uploads/produk/';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            $config['max_size']             = 2048;
+            $config['file_name']             = 'item-' . date('ymd') . '-' . date('(his)') . '-' . substr(md5(rand()), 0, 10);
+            $this->load->library('upload', $config);
+            if (@$_FILES['foto']['name'] != null) {
+                if (!$this->upload->do_upload('foto')) {
+                    echo "Gagal";
+                } else {
+                    if ($data['produk']['Foto'] != null) {
+                        unlink('./uploads/produk/' . $data['produk']['Foto']);
+                    }
+                    $this->session->set_flashdata('flash', 'Diubah');
+                    $this->Produk_model->ubah();
+                    redirect('produk/listproduk');
+                }
+            } else {
+                $this->session->set_flashdata('flash', 'Diubah');
+                $this->Produk_model->ubah();
+                redirect('produk/listproduk');
+            }
         }
     }
 }

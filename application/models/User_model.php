@@ -23,14 +23,19 @@ class User_model extends CI_Model
             "Alamat" => $this->input->post('alamat', true),
             "Telepon" => $this->input->post('telepon', true),
             "Email" => $this->input->post('email', true),
-            "Level" => $this->input->post('level', true),
-            "Foto" => $this->input->post('foto', true),
+            "Level" => $this->input->post('level', true)
         ];
+
+        if (@$_FILES['foto']['name'] != null) {
+            $data['Foto'] = $this->upload->data('file_name');
+        }
+
         $this->db->insert('tbuser', $data);
     }
 
-    public function getDataByKode($kode){
-        return $this->db->get_where('tbuser',['KodeUser' => $kode])->row_array();
+    public function getDataByKode($kode)
+    {
+        return $this->db->get_where('tbuser', ['KodeUser' => $kode])->row_array();
     }
 
     public function ubah()
@@ -45,6 +50,10 @@ class User_model extends CI_Model
             "Level" => $this->input->post('level', true),
             "Foto" => $this->input->post('foto', true),
         ];
+
+        if (@$_FILES['foto']['name'] != null) {
+            $data['Foto'] = $this->upload->data('file_name');
+        }
 
         $this->db->where('KodeUser', $this->input->post('kode'));
         $this->db->update('tbuser', $data);

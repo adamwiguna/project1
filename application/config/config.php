@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+date_default_timezone_set("Asia/Singapore");
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/project1/';
+$config['base_url'] = 'http://localhost/git/project1/';
 
 /*
 |--------------------------------------------------------------------------
