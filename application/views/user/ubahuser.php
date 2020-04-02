@@ -76,9 +76,6 @@
                     <button type="submit" class="btn btn-primary btn-user btn-block">
                         Ubah
                     </button>
-                    <button type="reset" class="btn btn-primary btn-user btn-block">
-                        Ulang
-                    </button>
                     </form>
                 </div>
             </div>

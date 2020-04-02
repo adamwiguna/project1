@@ -89,7 +89,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - User Collapse Menu -->
-            <li class="nav-item <?php if ($judul == "Tambah User" || $judul == "List User") {
+            <li class="nav-item <?php if ($judul == "Tambah User" || $judul == "List User" || $judul == "Ubah User" || $judul == "Detail User") {
                                     echo "active";
                                 } ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true" aria-controls="collapseTwo">
@@ -97,7 +97,7 @@
                     <span>User</span>
                 </a>
 
-                <div id="collapseUser" class="collapse <?php if ($judul == "Tambah User" || $judul == "List User" || $judul == "Ubah User") {
+                <div id="collapseUser" class="collapse <?php if ($judul == "Tambah User" || $judul == "List User" || $judul == "Ubah User" || $judul == "Detail User") {
                                                             echo "show";
                                                         } ?>" aria-labelledby="headingUser" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -105,7 +105,7 @@
                         <a class="collapse-item <?php if ($judul == "Tambah User") {
                                                     echo "active";
                                                 } ?>" href="<?= base_url('User/tambahUser') ?>">Tambah User</a>
-                        <a class="collapse-item <?php if ($judul == "List User" || $judul == "Ubah User") {
+                        <a class="collapse-item <?php if ($judul == "List User" || $judul == "Ubah User" || $judul == "Detail User") {
                                                     echo "active";
                                                 } ?>" href="<?= base_url('User/listUser') ?>">List User</a>
                     </div>

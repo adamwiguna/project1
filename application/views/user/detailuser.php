@@ -4,10 +4,13 @@
     <div class="col-xl-7 col-lg-10 col-md-9">
 
         <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-header py-3  align-items-center">
-                <div class="text-center">
-                    <h5 class="m-0 font-weight-bold text-primary ">Detail User </h5>
+            <div class="card-header py-3  align-items-justify">
+                <div class="d-sm-flex align-items-center justify-content-between">
+                    <a href="<?= base_url('User/listUser') ?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-angle-double-left fa-sm text-white-50"></i> Kembali</a>
+                    <h5 class="m-0 font-weight-bold text-primary">Data User</h5>
+                    <a href="<?= base_url() ?>/user/ubahuser/<?= $user['KodeUser']; ?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-pencil-alt fa-sm text-white-50"></i> Edit User</a>
                 </div>
+
             </div>
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
