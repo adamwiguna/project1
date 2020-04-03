@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Buat Transaksi</h1>
+        <h1 class="h3 mb-0 text-gray-800">Buat Pembayaran</h1>
     </div>
 
     <div class="row justify-content-center">
@@ -11,13 +11,13 @@
             <!-- Basic Card Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Data Transaksi</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Data Pembayaran</h6>
                 </div>
                 <div class="card-body">
                     <form class="user" method="post" action="<?= base_url('transaksi/buattransaksi'); ?>">
                         <div class="form-group">
                             <label for="nama" class="font-weight-bold">Kode Transaksi</label>
-                            <input type="text" class="form-control" id="kode" name="kode">
+                            <input type="number" class="form-control" id="no" name="no">
                             <small class="form-text text-danger ml-1"> <?= form_error('kode'); ?> </small>
                         </div>
                         <div class="form-group">
@@ -31,8 +31,9 @@
                         </div>
                         <div class="form-group">
                             <label for="nama" class="font-weight-bold">Tanggal</label>
-                            <input type="date" class="form-control" id="nama" name="tanggal" size="1">
+                            <input type="date" class="form-control" id="nama" name="tanggal" size="1" value="<?= date('Y-m-d'); ?>">
                             <small class="form-text text-danger ml-1"> <?= form_error('tanggal'); ?> </small>
+                            <small class="form-text ml-1"> (bulan/tanggal/tahun) </small>
                         </div>
                         <button type="submit" class="btn btn-primary btn-user btn-block">
                             Simpan
@@ -44,3 +45,4 @@
             <!-- /.container-fluid -->
         </div>
     </div>
+</div>

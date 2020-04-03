@@ -4,6 +4,7 @@ class Produk_model extends CI_Model
 {
     public function getAllProduk()
     {
+        $this->db->order_by('NamaProduk', 'ASC');
         $query = $this->db->get('tbproduk');
         return $query->result_array();
     }

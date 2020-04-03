@@ -145,16 +145,27 @@
             </li>
 
             <!-- Nav Item - Pembayaran Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item <?php if ($judul == "Buat Pembayaran" || $judul == "Pembayaran" || $judul == "List Pembayaran" || $judul == "Konfirmasi Pembayaran") {
+                                    echo "active";
+                                } ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePembayaran" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-money-bill"></i>
                     <span>Pembayaran</span>
                 </a>
-                <div id="collapsePembayaran" class="collapse" aria-labelledby="headingPembayaran" data-parent="#accordionSidebar">
+                <div id="collapsePembayaran" class="collapse <?php if ($judul == "Buat Pembayaran" || $judul == "Pembayaran" || $judul == "List Pembayaran" || $judul == "Konfirmasi Pembayaran") {
+                                                                    echo "show";
+                                                                } ?>" aria-labelledby="headingPembayaran" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Kelola Pembayaran</h6>
-                        <a class="collapse-item" href="buttons.html">Buat Pembayaran</a>
-                        <a class="collapse-item" href="cards.html">List Pembayaran</a>
+                        <a class="collapse-item <?php if ($judul == "List Pembayaran") {
+                                                    echo "active";
+                                                } ?>" href="<?= base_url() ?>transaksi/listpembayaran">List Pembayaran</a>
+                        <a class="collapse-item <?php if ($judul == "Buat Pembayaran" || $judul == "Pembayaran") {
+                                                    echo "active";
+                                                } ?>" href="<?= base_url() ?>transaksi/pembayaran">Buat Pembayaran</a>
+                        <a class="collapse-item <?php if ($judul == "Konfirmasi Pembayaran") {
+                                                    echo "active";
+                                                } ?>" href="<?= base_url() ?>transaksi/konfirmasi">Konfirmasi Pembayaran</a>
                     </div>
                 </div>
             </li>

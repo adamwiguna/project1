@@ -57,7 +57,8 @@
     $(document).ready(function() {
         $('#data').DataTable({
             "order": [
-                [0, "desc"]
+                [0, "asc"],
+                [3, "asc"]
             ],
             responsive: true
         });
@@ -73,6 +74,25 @@
     });
 </script>
 
+<script>
+    $(document).ready(function() {
+        $('#datakonfirmasi').DataTable({
+            "order": [
+                [0, "desc"]
+            ]
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#datasiapdikirim').DataTable({
+            "order": [
+                [0, "desc"]
+            ]
+        });
+    });
+</script>
 
 <!-- Page level custom scripts -->
 <script src="<?= base_url('assets/') ?>js/demo/chart-area-demo.js"></script>

@@ -38,6 +38,7 @@
             </div>
 
         </div>
+
         <div class="col-lg-6">
             <div class="card shadow mb-4 ">
                 <div class="card-header py-3  align-items-center">
@@ -50,7 +51,7 @@
                             <label for="produk" class="font-weight-bold">Produk</label>
                             <select class="form-control" id="produk" name="produk">
                                 <?php foreach ($produk as $p) : ?>
-                                    <option value="<?= $p['KodeProduk']; ?>"><?= $p['NamaProduk']; ?></option>
+                                    <option value="<?= $p['KodeProduk']; ?>"><?= $p['NamaProduk'] . ' - (' . $p['Satuan'] . ')'; ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <small class="form-text text-danger ml-1"> <?= form_error('produk'); ?> </small>
@@ -91,6 +92,7 @@
                                 <tr>
                                     <th>Nama Produk</th>
                                     <th>Harga</th>
+                                    <th>Satuan</th>
                                     <th>Jumlah</th>
                                     <th>Total Harga</th>
                                     <th>Aksi</th>
@@ -105,9 +107,15 @@
                                     <tr>
                                         <td><?= $produk['NamaProduk']; ?></td>
                                         <td><?= number_format($produk['Harga']); ?> </td>
+                                        <td><?= $produk['Satuan']; ?></td>
                                         <td><?= $p['Jumlah']; ?></td>
                                         <td><?= number_format($p['TotalBayar']); ?></td>
                                         <td>
+                                            <a href="<?= base_url(); ?>/transaksi/hapusdetailtransaksi/<?= $p['KodeDetail']; ?>" class="btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus?'); ">
+                                                <span class="icon text-white">
+                                                    <i class="fas fa-trash"></i>
+                                                </span>
+                                            </a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

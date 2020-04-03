@@ -30,19 +30,45 @@ class Transaksi_model extends CI_Model
         return $query->result_array();
     }
 
+    public function getKodeByNo($no)
+    {
+        $this->db->select('KodeTransaksi');
+        return $this->db->get_where('tbtransaksi', ['NoTransaksi' => $no])->row()->KodeTransaksi;
+    }
+
+    public function getTransaksiByKode($kode)
+    {
+        return $this->db->get_where('tbtransaksi', ['KodeTransaksi' => $kode])->row_array();
+    }
+
+    public function getKodeByDetail($kodedetail)
+    {
+        $this->db->select('KodeTransaksi');
+        return  $this->db->get_where('tbdetailtransaksi', ['KodeDetail' => $kodedetail])->row()->KodeTransaksi;
+    }
+
+
     public function hapusTransaksi($kode)
     {
         $this->db->where('KodeTransaksi', $kode);
         $this->db->delete('tbtransaksi');
     }
 
+    public function hapusDetailTransaksi($kode)
+    {
+        $this->db->where('KodeDetail', $kode);
+        $this->db->delete('tbdetailtransaksi');
+    }
+
     public function buatTransaksi()
     {
+        $kodetransaksi = '' . $this->input->post('no', true) . '' . $this->input->post('kode', true);
         $data = [
-            "NoTransaksi" => $this->input->post('kode', true),
+            "NoTransaksi" => $kodetransaksi,
             "KodeUser" => $this->input->post('nama', true),
             "TglOrder" => $this->input->post('tanggal', true),
-            "StatusTransaksi" => 'Belum Selesai'
+            "StatusTransaksi" => 'Belum Selesai',
+            "NoUrut" => $this->input->post('no', true),
         ];
         $this->db->insert('tbtransaksi', $data);
     }
@@ -82,16 +108,6 @@ class Transaksi_model extends CI_Model
         $this->db->update('tbtransaksi', $data);
     }
 
-    public function getKodeByNo($no)
-    {
-        $this->db->select('KodeTransaksi');
-        return $this->db->get_where('tbtransaksi', ['NoTransaksi' => $no])->row()->KodeTransaksi;
-    }
-
-    public function getTransaksiByKode($kode)
-    {
-        return $this->db->get_where('tbtransaksi', ['KodeTransaksi' => $kode])->row_array();
-    }
 
 
     public function ubah()
