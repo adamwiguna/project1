@@ -163,7 +163,7 @@
                         <a class="collapse-item <?php if ($judul == "Buat Pembayaran" || $judul == "Pembayaran") {
                                                     echo "active";
                                                 } ?>" href="<?= base_url() ?>transaksi/pembayaran">Buat Pembayaran</a>
-                        <a class="collapse-item <?php if ($judul == "Konfirmasi Pembayaran") {
+                        <a class="collapse-item <?php if ($judul == "Konfirmasi Pembayaran" ) {
                                                     echo "active";
                                                 } ?>" href="<?= base_url() ?>transaksi/konfirmasi">Konfirmasi Pembayaran</a>
                     </div>
