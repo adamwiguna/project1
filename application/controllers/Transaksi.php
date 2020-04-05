@@ -10,6 +10,7 @@ class Transaksi extends CI_Controller
         $this->load->model('User_model');
         $this->load->model('Produk_model');
         $this->load->model('Pembayaran_model');
+        $this->load->model('Stok_model');
     }
 
     public function index()

@@ -50,6 +50,11 @@ class Transaksi_model extends CI_Model
 
     public function hapusTransaksi($kode)
     {
+        $detail = $this->getAllProdukByKodeTransaksi($kode);
+        foreach ($detail as $d) {
+            $riwayat['stok'] = $this->Stok_model->getDataByKodeDetail($d['KodeDetail']);
+            $this->Stok_model->hapusRiwayat($riwayat['stok']['KodeStok']);
+        };
         $this->db->where('KodeTransaksi', $kode);
         $this->db->delete('tbtransaksi');
     }
@@ -94,10 +99,22 @@ class Transaksi_model extends CI_Model
 
         $this->db->where('KodeTransaksi', $kode);
         $totalbayar = $this->db->get('tbdetailtransaksi')->result_array();
-        var_dump($totalbayar);
+
+        $this->db->where('KodeTransaksi', $kode);
+        $transaksi = $this->db->get('tbtransaksi')->row_array();
+
         $total = 0;
         foreach ($totalbayar as $t) {
             $total = $total + $t['TotalBayar'];
+            $data = [
+                "KodeProduk" => $t['KodeProduk'],
+                "Jumlah" => (-$t['Jumlah']),
+                "Tanggal" => $transaksi['TglOrder'],
+                "Tipe" => 'Keluar',
+                "KodeDetail" => $t['KodeDetail'],
+                "Keterangan" => $transaksi['NoTransaksi'],
+            ];
+            $this->Stok_model->stokKeluar($data);
         }
         $this->db->where('KodeTransaksi', $kode);
         $data = [

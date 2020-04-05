@@ -59,7 +59,6 @@ class Produk extends CI_Controller
 
     public function hapus($kode)
     {
-
         $data['produk'] = $this->Produk_model->getDataByKode($kode);
         if ($data['produk']['Foto'] != null) {
             unlink('./uploads/produk/' . $data['produk']['Foto']);

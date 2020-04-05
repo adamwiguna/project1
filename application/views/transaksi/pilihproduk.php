@@ -32,6 +32,7 @@
                     <div class="form-group">
                         <label for="nama" class="font-weight-bold">Tanggal</label>
                         <input disabled type="date" class="form-control" id="nama" name="tanggal" value="<?= $transaksi['TglOrder'] ?>">
+
                         <small class="form-text text-danger ml-1"> <?= form_error('nama'); ?> </small>
                     </div>
                 </div>
@@ -121,6 +122,8 @@
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
+
+                        <input hidden type="date" class="form-control" id="nama" name="tanggal" value="<?= $transaksi['TglOrder'] ?>">
 
                         <a href="<?= base_url(); ?>/transaksi/simpantransaksi/<?= $transaksi['KodeTransaksi']; ?>" type="submit" class="btn btn-primary btn-user btn-block">
                             SIMPAN TRANSAKSI

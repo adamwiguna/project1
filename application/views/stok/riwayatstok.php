@@ -2,7 +2,7 @@
    <div class="container-fluid">
 
        <!-- Page Heading -->
-       <h1 class="h3 mb-2 text-gray-800">List Produk</h1>
+       <h1 class="h3 mb-2 text-gray-800">Riwayat Stok</h1>
        <?php if ($this->session->flashdata()) : ?>
            <div class="alert alert-success">
                Data produk berhasil <strong><?= $this->session->flashdata('flash'); ?></strong>
@@ -17,7 +17,7 @@
        <div class="card shadow mb-4">
            <div class="card-header py-3">
                <div class="d-sm-flex align-items-center justify-content-between">
-                   <h6 class="m-0 font-weight-bold text-primary">Data Produk</h6>
+                   <h6 class="m-0 font-weight-bold text-primary">Data Riwayat Stok</h6>
                    <a href="<?= base_url('Produk/tambahProduk') ?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus-square fa-sm text-white-50"></i> Tambah Produk</a>
                </div>
            </div>
@@ -28,31 +28,34 @@
                        <thead>
                            <tr>
                                <th hidden>Kode</th>
-                               <th>Foto</th>
-                               <th>Deskripsi </th>
-                               <th>Satuan</th>
-                               <th>Harga(Rp)</th>
-                               <th>Stok</th>
+                               <th>Tipe </th>
+                               <th>Nama Produk</th>
+                               <th>Jumlah</th>
+                               <th>Tanggal</th>
+                               <th>Keterangan</th>
                                <th>Aksi</th>
                            </tr>
                        </thead>
                        <tbody>
-                           <?php foreach ($produk as $p) : ?>
-                               <tr>
-                                   <td hidden><?= $p['KodeProduk']; ?></td>
+                           <?php foreach ($stok as $p) : ?>
+                               <tr class="<?php
+                                            if ($p['Tipe'] == 'Masuk') {
+                                                echo 'text-info';
+                                            } else {
+                                                echo 'text-danger';
+                                            }
+
+                                            $this->db->where('KodeProduk', $p['KodeProduk']);
+                                            $produk = $this->db->get('tbproduk')->row_array();
+                                            ?>">
+                                   <td hidden><?= $p['KodeStok']; ?></td>
+                                   <td><?= $p['Tipe']; ?></td>
+                                   <td><?= $produk['NamaProduk'] . '(' . $produk['Satuan'] . ')'; ?></td>
+                                   <td><?= $p['Jumlah']; ?></td>
+                                   <td><?= $p['Tanggal']; ?></td>
+                                   <td><?= $p['Keterangan']; ?></td>
                                    <td>
-                                       <img src="<?= base_url(); ?>uploads/produk/<?= $p['Foto'] ?>" width="120px" alt="">
-                                   </td>
-                                   <td>
-                                       <text style="font-variant-caps: all-large-caps; font-weight:bold; font-style: oblique"> <?= $p['NamaProduk']; ?> <br> </text>
-                                       <text style="font-weight:600; font-style:italic"> <?= $p['KategoriProduk']; ?> <br> </text>
-                                       <text> <?= $p['Keterangan']; ?> <br> </text>
-                                   </td>
-                                   <td><?= $p['Satuan']; ?></td>
-                                   <td><?= number_format($p['Harga']); ?></td>
-                                   <td><?= $p['Stok']; ?></td>
-                                   <td>
-                                       <a href="<?= base_url(); ?>/produk/ubahproduk/<?= $p['KodeProduk']; ?>" class="btn btn-success ">
+                                       <a href="<?= base_url(); ?>/stok/ubahstok/<?= $p['KodeStok']; ?>" class="btn btn-success ">
                                            <span class="icon text-white">
                                                <i class="fas fa-pencil-alt"></i>
                                            </span>
@@ -60,7 +63,7 @@
                                        </a>
                                        <!-- Aksi delete -->
                                        <!-- Button -->
-                                       <a href="<?= base_url(); ?>/produk/hapus/<?= $p['KodeProduk']; ?>" class="btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus?'); ">
+                                       <a href="<?= base_url(); ?>/stok/hapusriwayatstok/<?= $p['KodeStok']; ?>" class="btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus?'); ">
                                            <span class="icon text-white">
                                                <i class="fas fa-trash"></i>
                                            </span>

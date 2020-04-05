@@ -57,8 +57,7 @@
     $(document).ready(function() {
         $('#data').DataTable({
             "order": [
-                [0, "asc"],
-                [3, "asc"]
+                [1, "SORT_FLAG_CASE"]
             ],
             responsive: true
         });
