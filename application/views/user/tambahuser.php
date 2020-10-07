@@ -23,7 +23,7 @@
                     </div>
                     <div class="form-group">
                         <label for="Alamat" class="font-weight-bold">Alamat</label>
-                        <input type="textarea" class="form-control " id="alamat" name="alamat">
+                        <textarea class="form-control " id="alamat" name="alamat">  </textarea>
                         <small class="form-text text-danger ml-1"> <?= form_error('alamat'); ?> </small>
                     </div>
                     <div class="form-group">

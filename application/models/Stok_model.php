@@ -4,7 +4,7 @@ class Stok_model extends CI_Model
 {
     public function getAllRiwayatStok()
     {
-        $this->db->order_by('Dibuat', 'ASC');
+        $this->db->order_by('Dibuat', 'DESC');
         $query = $this->db->get('tbstok');
         return $query->result_array();
     }

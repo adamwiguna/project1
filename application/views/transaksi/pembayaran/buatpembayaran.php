@@ -39,6 +39,30 @@
                         <label for="nama" class="font-weight-bold">Total yang harus di Bayar</label>
                         <input disabled type="text" class="form-control" id="kode" name="kode" value="<?= number_format($transaksi['TotalBayar']) ?>">
                     </div>
+                    <div class="form-group">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-9 ">
+                                <label for="nama" class="font-weight-bold">Produk yang di Order</label>
+                                <small class="form-text text-danger ml-1"> <?= form_error('kode'); ?> </small>
+                            </div>
+                            <div class="col-lg-3 ">
+                                <label for="nama" class="font-weight-bold">Jumlah</label>
+                                <small class="form-text text-danger ml-1"> <?= form_error('kode'); ?> </small>
+                            </div>
+                        </div>
+                        <?php foreach ($pesanan as $p) : ?>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-9 ">
+                                    <input disabled type="text" class="form-control" id="kode" name="kode" value="<?= $p['NamaProduk'] ?>">
+                                    <small class="form-text text-danger ml-1"> <?= form_error('kode'); ?> </small>
+                                </div>
+                                <div class="col-lg-3 ">
+                                    <input disabled type="text" class="form-control" id="kode" name="kode" value="<?= $p['Jumlah'] ?>">
+                                    <small class="form-text text-danger ml-1"> <?= form_error('kode'); ?> </small>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
             </div>
 
@@ -51,31 +75,31 @@
                     <h6 class="m-0 font-weight-bold text-primary">Data Pembayaran</h6>
                 </div>
                 <div class="card-body">
-                    <?php echo form_open_multipart('transaksi/buatpembayaran/' . $transaksi['KodeTransaksi']); ?>
+                    <?php echo form_open_multipart('transaksi/simpanpembayaran/' . $transaksi['KodeTransaksi']); ?>
                     <input type="hidden" class="form-control" id="no" name="no" value="<?= $transaksi['NoTransaksi'] ?>">
                     <input type="hidden" class="form-control" id="kode" name="kode" value="<?= $transaksi['KodeTransaksi'] ?>">
                     <div class="form-group">
                         <label for="nama" class="font-weight-bold">No Rekening</label>
-                        <input type="text" class="form-control" id="norek" name="norek">
+                        <input type="text" class="form-control" id="norek" name="norek" required>
                         <small class="form-text text-danger ml-1"> <?= form_error('norek'); ?> </small>
                     </div>
                     <div class="form-group">
                         <label for="nama" class="font-weight-bold">Atas Nama</label>
-                        <input type="text" class="form-control" id="atasnama" name="atasnama">
+                        <input type="text" class="form-control" id="atasnama" name="atasnama" required>
                         <small class="form-text text-danger ml-1"> <?= form_error('nama'); ?> </small>
                     </div>
                     <div class="form-group">
                         <label for="nama" class="font-weight-bold">Nama Bank</label>
-                        <input type="text" class="form-control" id="bank" name="bank">
+                        <input type="text" class="form-control" id="bank" name="bank" required>
                         <small class="form-text text-danger ml-1"> <?= form_error('nama'); ?> </small>
                     </div>
                     <div class="form-group">
-                        <label for="nama" class="font-weight-bold">Jumlah Bayar</label>
+                        <label for="nama" class="font-weight-bold">Jumlah Bayar</label required>
                         <input type="number" class="form-control" id="bayar" name="bayar">
                         <small class="form-text text-danger ml-1"> <?= form_error('nama'); ?> </small>
                     </div>
                     <div class="form-group">
-                        <label for="nama" class="font-weight-bold">Tanggal Bayar</label>
+                        <label for="nama" class="font-weight-bold">Tanggal Bayar</label required>
                         <input type="date" class="form-control" id="tanggal" name="tanggal">
                         <small class="form-text text-danger ml-1"> <?= form_error('nama'); ?> </small>
                     </div>

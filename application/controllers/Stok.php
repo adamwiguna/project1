@@ -31,6 +31,45 @@ class Stok extends CI_Controller
         }
     }
 
+    public function tambahStokProduk($kode)
+    {
+        $data['judul'] = 'Tambah Stok';
+        $data['stokproduk'] = $this->Produk_model->getDataByKode($kode);
+        $this->form_validation->set_rules('produk', 'Produk', 'required');
+        // $this->form_validation->set_rules('nama', 'Nama', 'required');
+        // $this->form_validation->set_rules('tanggal', 'Tanggal Transaksi', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('header', $data);
+            $this->load->view('stok/tambahstokproduk', $data);
+            $this->load->view('footer');
+        } else {
+            $this->session->set_flashdata('flash', 'Ditambahkan');
+            $this->Stok_model->tambahStok();
+            redirect('stok/riwayatstok/');
+        }
+    }
+
+    public function lihatStok()
+    {
+        $data['judul'] = 'Stok Barang';
+        $data['produk'] = $this->Produk_model->getAllProdukByStok();
+        $data['user'] = $this->User_model->getAllUser();
+        $this->form_validation->set_rules('produk', 'Produk', 'required');
+        // $this->form_validation->set_rules('nama', 'Nama', 'required');
+        // $this->form_validation->set_rules('tanggal', 'Tanggal Transaksi', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('header', $data);
+            $this->load->view('stok/stok', $data);
+            $this->load->view('footer');
+        } else {
+            $this->session->set_flashdata('flash', 'Ditambahkan');
+            $this->Stok_model->tambahStok();
+            redirect('stok/riwayatstok/');
+        }
+    }
+
     public function riwayatStok()
     {
         $data['judul'] = 'Riwayat Stok';

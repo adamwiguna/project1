@@ -30,7 +30,10 @@
                         </div>
                         <div class="form-group">
                             <label for="nama" class="font-weight-bold">Nama Pelanggan</label>
-                            <select class="form-control" id="nama" name="nama">
+                            <select class="form-control" id="nama" name="nama" class="font-weight-bold text-danger">
+                                <option class="font-weight-bold text-danger text-center">
+
+                                </option>
                                 <?php foreach ($user as $u) : ?>
                                     <option value="<?= $u['KodeUser']; ?>"><?= $u['NamaLengkap']; ?></option>
                                 <?php endforeach; ?>

@@ -11,7 +11,7 @@ class Pembayaran_model extends CI_Model
             "AtasNama" => $this->input->post('atasnama', true),
             "NamaBank" => $this->input->post('bank', true),
             "JumlahBayar" => $this->input->post('bayar', true),
-            "BuktiBayar" => $this->input->post('bukti', true),
+            "BuktiBayar" => "nophoto.jpg",
             "TglBayar" => $this->input->post('tanggal', true),
         ];
         if (@$_FILES['bukti']['name'] != null) {
@@ -21,7 +21,8 @@ class Pembayaran_model extends CI_Model
 
         $this->db->where('KodeTransaksi', $this->input->post('kode', true));
         $data = [
-            "StatusTransaksi" => 'Konfirmasi Pembayaran'
+            "StatusTransaksi" => 'Konfirmasi Pembayaran',
+            "StatusBayar" => 'Sudah',
         ];
 
         $this->db->update('tbtransaksi', $data);

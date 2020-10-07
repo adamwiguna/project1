@@ -24,7 +24,7 @@
 
                     <div class="form-group">
                         <label for="nama" class="font-weight-bold">Nama Produk</label>
-                        <input type="text" class="form-control" id="namaproduk" name="nama" value="<?= $produk['NamaProduk'];  ?>">
+                        <input type="text" class="form-control" id="namaproduk" name="nama" value="<?= $produk['NamaProduk'];  ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="kategori" class="font-weight-bold">Kategori</label>

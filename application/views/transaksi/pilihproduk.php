@@ -1,9 +1,14 @@
+<body onbeforeunload="return myFunction()"></body>
 <div class="container-fluid">
     <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4" onunload="return confirm('Anda Yakin Ingin Menghapus?');">
         <h1 class="h3 mb-0 text-gray-800">Buat Pesanan</h1>
     </div>
-
+    <script>
+        function myFunction() {
+            return alert('Anda Yakin Ingin Menghapus?');
+        }
+    </script>
     <div class="row">
 
         <div class="col-lg-6">
@@ -50,7 +55,7 @@
                         <input type="hidden" class="form-control" id="kode" name="kode" value="<?= $transaksi['KodeTransaksi'] ?>">
                         <div class="form-group">
                             <label for="produk" class="font-weight-bold">Produk</label>
-                            <select class="form-control" id="produk" name="produk">
+                            <select class="form-control" id="produk" name="produk" aria-placeholder="adsf">
                                 <?php foreach ($produk as $p) : ?>
                                     <option value="<?= $p['KodeProduk']; ?>"><?= $p['NamaProduk'] . ' - (' . $p['Satuan'] . ')'; ?></option>
                                 <?php endforeach; ?>

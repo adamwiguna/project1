@@ -12,20 +12,65 @@ class Transaksi_model extends CI_Model
     public function getAllProdukByKodeTransaksi($kode)
     {
         $this->db->where('KodeTransaksi', $kode);
+        $this->db->join('tbproduk', 'tbproduk.KodeProduk = tbdetailtransaksi.KodeProduk');
         $query = $this->db->get('tbdetailtransaksi');
         return $query->result_array();
     }
 
     public function getAllTransaksi()
     {
-        $this->db->group_by('NoTransaksi');
+        $this->db->order_by('StatusSimpan ASC, tbtransaksi.StatusBayar ASC, StatusKirim ASC');
+        // $this->db->join('tbpembayaran', 'tbpembayaran.KodeTransaksi = tbtransaksi.KodeTransaksi');
         $query = $this->db->get('tbtransaksi');
         return $query->result_array();
+    }
+
+    public function getAllTransaksiBelum()
+    {
+        $this->db->order_by('StatusSimpan ASC, tbtransaksi.StatusBayar ASC, StatusKirim ASC');
+        $this->db->where('StatusBayar', NULL);
+        $this->db->or_where('StatusKirim', NULL);
+        $query = $this->db->get('tbtransaksi');
+        return $query->result_array();
+    }
+
+    public function getCountOrder()
+    {
+        $this->db->select('max(TotalBayar) as order');
+        // $this->db->group_by('year(TglOrder), month(TglOrder)');
+        $this->db->where('StatusBayar', SQL_NO_NULLS);
+        // $this->db->order_by('TglOrder ASC');
+        $query = $this->db->get('tbtransaksi');
+        return $query->row_array();
     }
 
     public function getAllTransaksiByStatus($status)
     {
         $this->db->where('StatusTransaksi', $status);
+        $query = $this->db->get('tbtransaksi');
+        return $query->result_array();
+    }
+
+    public function getAllTransaksiByBayar()
+    {
+        $this->db->where('StatusBayar', NULL);
+        $this->db->where('StatusSimpan', SQL_NO_NULLS);
+        $query = $this->db->get('tbtransaksi');
+        return $query->result_array();
+    }
+
+    public function getAllTransaksiByKirim()
+    {
+        $this->db->where('StatusKirim', NULL);
+        $this->db->where('StatusSimpan', SQL_NO_NULLS);
+        $query = $this->db->get('tbtransaksi');
+        return $query->result_array();
+    }
+    public function getAllTransaksiBySelesai()
+    {
+        $this->db->where('StatusKirim', SQL_NO_NULLS);
+        $this->db->where('StatusSimpan', SQL_NO_NULLS);
+        $this->db->where('StatusBayar', SQL_NO_NULLS);
         $query = $this->db->get('tbtransaksi');
         return $query->result_array();
     }
@@ -119,7 +164,8 @@ class Transaksi_model extends CI_Model
         $this->db->where('KodeTransaksi', $kode);
         $data = [
             "TotalBayar" => $total,
-            "StatusTransaksi" => 'Menunggu Pembayaran'
+            "StatusTransaksi" => 'Menunggu Pembayaran',
+            "StatusSimpan" => 'Sudah',
         ];
 
         $this->db->update('tbtransaksi', $data);

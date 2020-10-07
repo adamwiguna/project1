@@ -121,31 +121,33 @@
             </div>
 
             <!-- Nav Item - Stok Collapse Menu -->
-            <li class="nav-item <?php if ($judul == "Tambah Stok" || $judul == "Riwayat Stok" ) {
+            <li class="nav-item <?php if ($judul == "Tambah Stok" || $judul == "Stok Barang" || $judul == "Riwayat Stok") {
                                     echo "active";
                                 } ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStok" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-boxes"></i>
                     <span>Stok Barang</span>
                 </a>
-                <div id="collapseStok" class="collapse <?php if ($judul == "Tambah Stok" || $judul == "Riwayat Stok" ) {
-                                    echo "show";
-                                } ?>" aria-labelledby="headingPengiriman" data-parent="#accordionSidebar">
+                <div id="collapseStok" class="collapse <?php if ($judul == "Tambah Stok" || $judul == "Riwayat Stok" || $judul == "Stok Barang") {
+                                                            echo "show";
+                                                        } ?>" aria-labelledby="headingPengiriman" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Kelola Stok Barang</h6>
                         <a class="collapse-item <?php if ($judul == "Tambah Stok") {
-                                    echo "active";
-                                } ?>" href="<?= base_url() ?>Stok/tambahstok/">Tambah Stok</a>
-                        <a class="collapse-item" href="buttons.html">Stok Keluar</a>
-                        <a class="collapse-item <?php if ( $judul == "Riwayat Stok" ) {
-                                    echo "active";
-                                } ?>" href="<?= base_url() ?>stok/riwayatstok">Riwayat Stok</a>
+                                                    echo "active";
+                                                } ?>" href="<?= base_url() ?>Stok/tambahstok/">Tambah Stok</a>
+                        <a class="collapse-item <?php if ($judul == "Stok Barang") {
+                                                    echo "active";
+                                                } ?>" href="<?= base_url() ?>Stok/lihatstok/">Stok Barang</a>
+                        <a class="collapse-item <?php if ($judul == "Riwayat Stok") {
+                                                    echo "active";
+                                                } ?>" href="<?= base_url() ?>stok/riwayatstok">Riwayat Stok</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Pesanan Collapse Menu -->
-            <li class="nav-item <?php if ($judul == "Buat Transaksi" || $judul == "List Pesanan" || $judul == "Pilih Produk") {
+            <li class="nav-item <?php if ($judul == "Buat Transaksi" || $judul == "List Pesanan" || $judul == "Pilih Produk" || $judul == "Pembayaran" || $judul == "Pengiriman") {
                                     echo "active";
                                 } ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePesanan" aria-expanded="true" aria-controls="collapseTwo">
@@ -153,7 +155,7 @@
                     <span>Transaksi</span>
                 </a>
 
-                <div id="collapsePesanan" class="collapse <?php if ($judul == "Buat Transaksi" || $judul == "List Pesanan" || $judul == "Pilih Produk") {
+                <div id="collapsePesanan" class="collapse <?php if ($judul == "Buat Transaksi" || $judul == "List Pesanan" || $judul == "Pilih Produk" || $judul == "Pembayaran" || $judul == "Pengiriman") {
                                                                 echo "show";
                                                             } ?> " aria-labelledby="headingPesanan" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -161,22 +163,47 @@
                         <a class="collapse-item <?php if ($judul == "Buat Transaksi" || $judul == "Pilih Produk") {
                                                     echo "active";
                                                 } ?>" href="<?= base_url() ?>transaksi/buatTransaksi">Buat Transaksi</a>
-                        <a class="collapse-item <?php if ($judul == "List Pesanan") {
+                        <a class="collapse-item <?php if ($judul == "List Pesanan" || $judul == "Pembayaran" || $judul == "Pengiriman") {
                                                     echo "active";
                                                 } ?>" href="<?= base_url() ?>transaksi/listpesanan">List Transaksi</a>
                     </div>
                 </div>
             </li>
 
+            <!-- Nav Item - Laporan Collapse Menu -->
+            <li class="nav-item <?php if ($judul == "Penjualan" || $judul == "Barang Terjual" || $judul == "Keuangan") {
+                                    echo "active";
+                                } ?>">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLaporan" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Laporan</span>
+                </a>
+                <div id="collapseLaporan" class="collapse <?php if ($judul == "Penjualan" || $judul == "Barang Terjual" || $judul == "Keuangan") {
+                                                                echo "show";
+                                                            } ?>" aria-labelledby="headingPengiriman" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item <?php if ($judul == "Keuangan") {
+                                                    echo "active";
+                                                } ?>" href="<?= base_url() ?>Laporan/lihatLaporanKeuangan">Keuangan</a>
+                        <a class="collapse-item <?php if ($judul == "Penjualan") {
+                                                    echo "active";
+                                                } ?>" href="<?= base_url() ?>Laporan/lihatLaporanPenjualan">Grafik Penjualan</a>
+                        <a class="collapse-item <?php if ($judul == "Barang Terjual") {
+                                                    echo "active";
+                                                } ?>" href="<?= base_url() ?>Laporan/lihatLaporanBarang">Grafik Barang Terjual</a>
+                    </div>
+                </div>
+            </li>
+
             <!-- Nav Item - Pembayaran Collapse Menu -->
-            <li class="nav-item <?php if ($judul == "Buat Pembayaran" || $judul == "Pembayaran" || $judul == "List Pembayaran" || $judul == "Konfirmasi Pembayaran") {
+            <li class="nav-item <?php if ($judul == "Buat Pembayaran" || $judul == "Pembayaran1" || $judul == "List Pembayaran" || $judul == "Konfirmasi Pembayaran") {
                                     echo "active";
                                 } ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePembayaran" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-money-bill"></i>
                     <span>Pembayaran</span>
                 </a>
-                <div id="collapsePembayaran" class="collapse <?php if ($judul == "Buat Pembayaran" || $judul == "Pembayaran" || $judul == "List Pembayaran" || $judul == "Konfirmasi Pembayaran") {
+                <div id="collapsePembayaran" class="collapse <?php if ($judul == "Buat Pembayaran" || $judul == "Pembayaran1" || $judul == "List Pembayaran" || $judul == "Konfirmasi Pembayaran") {
                                                                     echo "show";
                                                                 } ?>" aria-labelledby="headingPembayaran" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">

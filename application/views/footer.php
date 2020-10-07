@@ -57,7 +57,33 @@
     $(document).ready(function() {
         $('#data').DataTable({
             "order": [
-                [1, "SORT_FLAG_CASE"]
+                [0]
+            ],
+            responsive: true
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#data1').DataTable({
+            "order": [],
+            responsive: true
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#datapendapatan').DataTable({
+            "order": [],
+            responsive: true
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#dataselesai').DataTable({
+            "order": [
+                [0]
             ],
             responsive: true
         });
@@ -67,7 +93,7 @@
     $(document).ready(function() {
         $('#dataTableProduk').DataTable({
             "order": [
-                [0, "desc"]
+
             ]
         });
     });
@@ -94,7 +120,6 @@
 </script>
 
 <!-- Page level custom scripts -->
-<script src="<?= base_url('assets/') ?>js/demo/chart-area-demo.js"></script>
 <script src="<?= base_url('assets/') ?>js/demo/chart-pie-demo.js"></script>
 <script src="<?= base_url('assets/') ?>js/demo/datatables-demo.js"></script>
 

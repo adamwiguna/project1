@@ -2,7 +2,7 @@
    <div class="container-fluid">
 
        <!-- Page Heading -->
-       <h1 class="h3 mb-2 text-gray-800">List Produk</h1>
+       <h1 class="h3 mb-2 text-gray-800"><?= $judul; ?></h1>
        <?php if ($this->session->flashdata()) : ?>
            <div class="alert alert-success">
                Data produk berhasil <strong><?= $this->session->flashdata('flash'); ?></strong>
@@ -14,10 +14,10 @@
 
 
        <!-- DataTales Example -->
-       <div class="card shadow mb-4">
+       <div class="card shadow mb-4" id="aaa">
            <div class="card-header py-3">
                <div class="d-sm-flex align-items-center justify-content-between">
-                   <h6 class="m-0 font-weight-bold text-primary">Data Produk</h6>
+                   <h6 class="m-0 font-weight-bold text-primary">Data <?= $judul; ?></h6>
                    <a href="<?= base_url('Produk/tambahProduk') ?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus-square fa-sm text-white-50"></i> Tambah Produk</a>
                </div>
            </div>
@@ -53,11 +53,18 @@
                                    <td><?= $p['Stok']; ?></td>
                                    <td>
                                        <a href="<?= base_url(); ?>/produk/ubahproduk/<?= $p['KodeProduk']; ?>" class="btn btn-success ">
+                                       </a>
+                                       <button type="button" class="btn btn-success " onclick="edit(<?= $p['KodeProduk']; ?>)">
+                                           <script>
+                                               function edit(KodeJenis) {
+                                                   $('#aaa').load("ubahproduk/" + KodeJenis, "#ubahproduk");
+                                               }
+                                           </script>
                                            <span class="icon text-white">
                                                <i class="fas fa-pencil-alt"></i>
                                            </span>
                                            <span class="text"></span>
-                                       </a>
+                                       </button>
                                        <!-- Aksi delete -->
                                        <!-- Button -->
                                        <a href="<?= base_url(); ?>/produk/hapus/<?= $p['KodeProduk']; ?>" class="btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus?'); ">

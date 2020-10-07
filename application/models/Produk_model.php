@@ -9,6 +9,13 @@ class Produk_model extends CI_Model
         return $query->result_array();
     }
 
+    public function getAllProdukByStok()
+    {
+        $this->db->order_by('Stok', 'ASC');
+        $query = $this->db->get('tbproduk');
+        return $query->result_array();
+    }
+
     public function getDataByKode($kode)
     {
         return $this->db->get_where('tbproduk', ['KodeProduk' => $kode])->row_array();

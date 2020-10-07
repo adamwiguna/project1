@@ -33,7 +33,7 @@
                                <th>Jumlah</th>
                                <th>Tanggal</th>
                                <th>Keterangan</th>
-                               <th>Aksi</th>
+                               <!-- //<th>Aksi</th> -->
                            </tr>
                        </thead>
                        <tbody>
@@ -54,21 +54,20 @@
                                    <td><?= $p['Jumlah']; ?></td>
                                    <td><?= $p['Tanggal']; ?></td>
                                    <td><?= $p['Keterangan']; ?></td>
-                                   <td>
+                                   <!-- <td>
                                        <a href="<?= base_url(); ?>/stok/ubahstok/<?= $p['KodeStok']; ?>" class="btn btn-success ">
                                            <span class="icon text-white">
                                                <i class="fas fa-pencil-alt"></i>
                                            </span>
                                            <span class="text"></span>
                                        </a>
-                                       <!-- Aksi delete -->
-                                       <!-- Button -->
+                                  
                                        <a href="<?= base_url(); ?>/stok/hapusriwayatstok/<?= $p['KodeStok']; ?>" class="btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus?'); ">
                                            <span class="icon text-white">
                                                <i class="fas fa-trash"></i>
                                            </span>
                                        </a>
-                                   </td>
+                                   </td> -->
                                </tr>
                            <?php endforeach; ?>
 

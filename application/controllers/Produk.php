@@ -22,6 +22,10 @@ class Produk extends CI_Controller
         $data['judul'] = 'Tambah Produk';
         $data['kategori'] = ['Kitchen', 'Laundry', 'Housekeeping', 'Pool Chemical'];
         $this->form_validation->set_rules('nama', 'Nama Produk', 'required');
+        if ($this->session->userdata('Halaman') != 'Produk') {
+            redirect('produk/listproduk');
+        }
+        $this->session->unset_userdata('Halaman');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('header', $data);
             $this->load->view('produk/tambahproduk', $data);
@@ -52,6 +56,7 @@ class Produk extends CI_Controller
     {
         $data['judul'] = 'List Produk';
         $data['produk'] = $this->Produk_model->getAllProduk();
+        $this->session->set_userdata('Halaman', 'Produk');
         $this->load->view('header', $data);
         $this->load->view('produk/listproduk', $data);
         $this->load->view('footer');
